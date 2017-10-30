@@ -36,17 +36,43 @@ Must haves:
 • custom OOP usage with methods and parameters*/
 
 
-var blah;
+var blah; //used in the flower function (CHANGE THIS NAME)
+
+var ffX = 0;	//fire fly X locatoin
+var ffY = 0;	//fire fly Y locatoin
+var ffYstart = 300;	//fire fly starting Y location
+var ffAngle = 0;	//fire fly angle
+var ffSize = 10;	//fire fly size
+
+var stars = [];
+
+var rotation = 0;	//radian to rotate the stars
 
 function setup() { 
-  createCanvas(400, 400);
-} 
+	createCanvas(400, 400);
+		
+	for (var i = 0; i < 100; i++){	//create the array of stars
+		stars[i] = new Star();
+	}
+	//angleMode(DEGREES);
+}
 
-function draw() { 
-  background(220);
-  flower;
-  stars;
+function draw() {
+	background(0);
 	
+	for (var i = 0; i < stars.length; i++){	//display the stars
+		stars[i].display();
+	}
+
+	//push();
+		//translate(width/2, height);
+		
+		//WHY ISN'T THIS ROTATING THE STARS?!?!
+		// rotate(rotation);
+		// rotation = rotation + 1;
+	//pop();
+
+	fireFly();
 }
 
 //-------------------------------------------------------------------------
@@ -58,31 +84,41 @@ function flower(){
 	rect(0,0,100,50);
 }
 
+
+function fireFly(){	
+	console.log("Here");
+	
+	
+
+	fill(0,255,0);
+	noStroke();
+	ffAngle = sin(ffY);	//WHY IS THIS NOT WORKING?!?!
+	ellipse(ffX,ffYstart + (ffAngle*2), ffSize,ffSize);
+
+	ffX = ffX + 0.5;	//move to the right
+	ffY = ffY + 0.5;	//oscilate up and down
+}
+
+
 //-------------------------------------------------------------------------
 //THIS FUNCTION IS NOT WORKING YET
-function stars() { 
-	// background(220);
-	// for (i = 0; i < 2*PI; i = i + PI/10){
-	// 	//translate(width/2, height/2);
-	// 	//background(220);
-	var rotateSpeed = 0.1;
-	var rotateBase = 0
-
-	rotateBase = rotateBase + rotateSpeed;
+// function stars() { 
 	
-	if ((rotateBase = 2*PI) || (rotateBase = 0)){
-		rotateBase = rotateBase * -1;
-	}
-	rotateBase = constrain(rotateBase, 0, 2*PI);
-		
-  translate(width / 2, height / 2);
-  for (var i = 0; i < 200; i = i + .1) {
-    background(220);
-		rotate(0.01);
-    ellipse(0, 0, 10, 10);
-  }
-		
-// 		rotate(i);
-// 		rect(100,100,50,50);
-// 		// background(220);
+// 	var rotateSpeed = 0.1;
+// 	var rotateBase = 0
+
+// 	rotateBase = rotateBase + rotateSpeed;
+	
+// 	if ((rotateBase = 2*PI) || (rotateBase = 0)){
+// 		rotateBase = rotateBase * -1;
 // 	}
+// 	rotateBase = constrain(rotateBase, 0, 2*PI);
+		
+// }
+    
+// //the part below this is the start of what you want
+// translate(width / 2, height / 2);
+//   for (var i = 0; i < 62; i = i + 1) {
+//     rotate(0.1);
+//     ellipse(100, 0, 10, 10);
+//   }
