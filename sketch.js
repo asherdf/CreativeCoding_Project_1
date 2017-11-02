@@ -38,41 +38,59 @@ Must haves:
 
 var blah; //used in the flower function (CHANGE THIS NAME)
 
-var ffX = 0;	//fire fly X locatoin
-var ffY = 0;	//fire fly Y locatoin
-var ffYstart = 300;	//fire fly starting Y location
-var ffAngle = 0;	//fire fly angle
-var ffSize = 10;	//fire fly size
+//var ffX = 0;	//fire fly X locatoin
+//var ffY = 0;	//fire fly Y locatoin
+//var ffYstart = 300;	//fire fly starting Y location
+//var ffAngle = 0;	//fire fly angle
+//var ffSize = 10;	//fire fly size
 
 var stars = [];
+
+var ff = [];
+
 
 var rotation = 0;	//radian to rotate the stars
 
 function setup() { 
-	createCanvas(400, 400);
-		
-	for (var i = 0; i < 100; i++){	//create the array of stars
+	createCanvas(400,400);
+	//console.log("test");
+	
+	//create the array of stars
+	for (var i = 0; i < 400; i++){
 		stars[i] = new Star();
 	}
+
+	//create the array of Fireflies
+	for (var i = 0; i < 15; i++){
+		ff[i] = new Firefly();
+	}
 	//angleMode(DEGREES);
+	
 }
 
 function draw() {
 	background(0);
 	
-	for (var i = 0; i < stars.length; i++){	//display the stars
-		stars[i].display();
-	}
+	//for the stars
+	push();
+		translate(width/2, (1*height));
+		rotate(rotation);
+		rotation = rotation + 0.01;
+
+		//display the stars
+		for (var i = 0; i < stars.length; i++){	
+			stars[i].display();
+		}
+	pop();
+		
+
 
 	//push();
-		//translate(width/2, height);
-		
-		//WHY ISN'T THIS ROTATING THE STARS?!?!
-		// rotate(rotation);
-		// rotation = rotation + 1;
 	//pop();
-
-	fireFly();
+	for (var i = 0; i < ff.length; i++){	
+			ff[i].display();
+		}
+	
 }
 
 //-------------------------------------------------------------------------
@@ -85,19 +103,19 @@ function flower(){
 }
 
 
-function fireFly(){	
-	console.log("Here");
+// function fireFly(){	
+// 	//console.log("Here");
 	
 	
 
-	fill(0,255,0);
-	noStroke();
-	ffAngle = sin(ffY);	//WHY IS THIS NOT WORKING?!?!
-	ellipse(ffX,ffYstart + (ffAngle*2), ffSize,ffSize);
+// 	fill(0,255,0);
+// 	noStroke();
+// 	ffAngle = sin(ffY);	//WHY IS THIS NOT WORKING?!?!
+// 	ellipse(ffX,ffYstart + (ffAngle*2), ffSize,ffSize);
 
-	ffX = ffX + 0.5;	//move to the right
-	ffY = ffY + 0.5;	//oscilate up and down
-}
+// 	ffX = ffX + 0.5;	//move to the right
+// 	ffY = ffY + 0.5;	//oscilate up and down
+// }
 
 
 //-------------------------------------------------------------------------
