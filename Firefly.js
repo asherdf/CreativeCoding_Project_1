@@ -1,30 +1,55 @@
 class Firefly {
 	constructor(){		
-		this.ffX = random(width);	//fire fly X locatoin
-		this.ffY = random(50);	//fire fly Y locatoin
-		this.ffYstart = random(300,350);	//fire fly starting Y location
-		this.ffAngle = random(5);	//fire fly angle
-		this.ffSize = 10;	//fire fly size
+		this.x = random(width);	
+		this.y = random(50);	
+		this.yStart = random(height);	//starting Y location
+		this.angle = random(5);
+		this.size = random(1,5);
+		this.direction = random(2);
+		this.speed = 1;
+		this.opac = random(100);	//opacity
+		this.fade = 1;
+
+		//colorMode(RGB,255,255,255);
 
 		//this.img = loadImage("glow.png");
-
 	}
 
-	display(){		
-
-		// tint(0,150,0);
-		// image(this.img,0,0);
-		fill(0,150,0);
+	display(){
+		fill(220,360,255, this.opac);
 		noStroke();
-		this.ffAngle = sin(this.ffY);
-		ellipse(this.ffX,this.ffYstart + (this.ffAngle*2),
-				this.ffSize,this.ffSize);
+		this.angle = sin(this.y);
+		ellipse(this.x, this.yStart + (this.angle*2), 
+				this.size, this.size); 
 
-		this.ffX = this.ffX + 0.5;	//move to the right
-		this.ffY = this.ffY + 0.5;	//oscilate up and down
+		if (this.direction > 1){
+			this.x += this.speed;	//move to the RIGHT
+		} else if (this.direction < 1){
+			this.x -= this.speed;	//move to the LEFT
+		}
+		
+		this.y = this.y + 0.1;	//oscilate up and down
+	}
 
-		//fill(255);
-		//noStroke();
-		//ellipse(this.x,this.y, this.starSize,this.starSize);
+	glow(){
+		this.opac = this.opac + this.fade;		
+		if (this.opac > 100){
+			this.fade = this.fade * (-1);
+		} else if (this.opac < 0){
+			this.fade = this.fade * (-1);
+		}
+	}
+
+	//if the Firefly leaves the screen, make it come back
+	reset(){
+		if (this.x > (width + 20)){
+			this.speed *= -1;
+			this.yStart = random(height);
+			//fill(random(50,360),255,255, this.opac);
+		} else if (this.x < -20){
+			this.speed *= -1;
+			this.yStart = random(height);
+			//fill(random(50,360),255,255, this.opac);
+		}
 	}
 }
