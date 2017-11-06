@@ -81,15 +81,15 @@ function draw() {
 	//push();
 		for (var i = 0; i < stars.length; i++){	
 			stars[i].display();
-			// stars[i].glow();
+			stars[i].glow();
 		}
 	//pop();
 	
 	//fireflies
 	for (var i = 0; i < ff.length; i++){	
-			ff[i].reset();
-			ff[i].display();
-			ff[i].glow();
+		ff[i].reset();
+		ff[i].display();
+		ff[i].glow();
 	}
 
 	// if (change == 0)
