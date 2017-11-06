@@ -9,14 +9,10 @@ class Firefly {
 		this.speed = 1;
 		this.opac = random(100);	//opacity
 		this.fade = 1;
-
-		//colorMode(RGB,255,255,255);
-
-		//this.img = loadImage("glow.png");
 	}
 
 	display(){
-		fill(220,360,255, this.opac);
+		fill(125,360,360, this.opac);
 		noStroke();
 		this.angle = sin(this.y);
 		ellipse(this.x, this.yStart + (this.angle*2), 
@@ -45,11 +41,11 @@ class Firefly {
 		if (this.x > (width + 20)){
 			this.speed *= -1;
 			this.yStart = random(height);
-			//fill(random(50,360),255,255, this.opac);
+			fill(random(125,360),255,255, this.opac);
 		} else if (this.x < -20){
 			this.speed *= -1;
 			this.yStart = random(height);
-			//fill(random(50,360),255,255, this.opac);
+			fill(random(125,360),255,255, this.opac);
 		}
 	}
 }

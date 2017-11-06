@@ -44,25 +44,15 @@ var ff = [];	//array
 
 var change = 0;	//change color of flower
 
-// var r;
-// var g;
-// var b;
-
-//var n = 0;
-//var theta = 0;
-
-var rotation = 0;	//radian to rotate the stars
-
 //---------------------------------------------------------------
 function setup() { 
 	createCanvas(400,400);
-	//console.log("test");
-	
+		
 	noStroke();
 	colorMode(HSB, 360,360,360, 100);
 
 	//create the array of stars
-	for (var i = 0; i < 100; i++){
+	for (var i = 0; i < 150; i++){
 		stars[i] = new Star();
 	}
 
@@ -70,7 +60,6 @@ function setup() {
 	for (var i = 0; i < 30; i++){
 		ff[i] = new Firefly();
 	}
-	//angleMode(DEGREES);
 }
 
 //---------------------------------------------------------------
@@ -78,13 +67,11 @@ function draw() {
 	background(0,0,0,20);
 	
 	//stars
-	//push();
-		for (var i = 0; i < stars.length; i++){	
-			stars[i].display();
-			stars[i].glow();
-		}
-	//pop();
-	
+	for (var i = 0; i < stars.length; i++){	
+		stars[i].display();
+		stars[i].glow();
+	}
+		
 	//fireflies
 	for (var i = 0; i < ff.length; i++){	
 		ff[i].reset();
@@ -92,21 +79,14 @@ function draw() {
 		ff[i].glow();
 	}
 
-	// if (change == 0)
-	// 	flower(200, 10, 360);	//rainbow
-	// if (change == 0)
-	// 	flower(100, 300, 360);	//rainbow
-	// else if (change == 3)
-	// 	flower(150, 150, 360);	//rainbow
-	
 	if (change == 0)
-		flower(360, 360, 360);	//blue & red
+		flower(300, 360, 360);	//blue & red
 	else if (change == 1)
-		flower(141, 25, 360);	//pastel rainbow
+		flower(241, 25, 360);	//pastel rainbow
 	else if (change == 2)
-		flower(20, 360, 360);	//green/yellow & red
+		flower(170, 360, 360);	//blue & green
 	else if (change == 3)
-		flower(100, 360, 360);	//vibrant rainbow
+		flower(100, 360, 360);	//orange & yellow
 }
 
 //---------------------------------------------------------------
@@ -119,61 +99,17 @@ function mousePressed(){
 
 //---------------------------------------------------------------
 function flower(hue, sat, bri){
-	
-	//colorMode(HSB);
-	//fill(hue, 350/height, 150);
-
 	push();
 		translate(width/2, height/2);
 		petal = map(mouseX, 0,width, 0,10);
 		
-		//if(mouseIsPressed){
-			// var hue = 100*x/width;
-			// var sat = 350*y/height;
-			// var bri = 150;
-		//}
-
-		//colorMode(HSB);
-		//fill(hue, 350*y/height, 150);
-
 		for (theta = 0; theta < TWO_PI; theta = theta + 0.01){
 			var r = cos(petal * theta);
 			var x = 125 * r * cos(theta);	//change to cartesian
 			var y = 125 * r * sin(theta);	//change to cartesian
 			
-			//hueF = map(hue, 0,360, 0,theta);
-
-			fill(hue+=(0.01*x/r), sat+=(0.01*y/r), bri);
-			//colorMode(RGB);
-			// r += 0.5;
-			// g += 0.05;
-			// b += 0.1;
-			
+			fill(hue+=(0.005*x/r), sat+=(0.005*y/r), bri);
 			ellipse(x, y, 5, 5);
 		}
 	pop();	
 }
-
-
-//---------------------------------------------------------------
-//THIS FUNCTION IS NOT WORKING YET
-// function stars() { 
-	
-// 	var rotateSpeed = 0.1;
-// 	var rotateBase = 0
-
-// 	rotateBase = rotateBase + rotateSpeed;
-	
-// 	if ((rotateBase = 2*PI) || (rotateBase = 0)){
-// 		rotateBase = rotateBase * -1;
-// 	}
-// 	rotateBase = constrain(rotateBase, 0, 2*PI);
-		
-// }
-    
-// //the part below this is the start of what you want
-// translate(width / 2, height / 2);
-//   for (var i = 0; i < 62; i = i + 1) {
-//     rotate(0.1);
-//     ellipse(100, 0, 10, 10);
-//   }
